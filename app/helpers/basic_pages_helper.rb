@@ -6,6 +6,6 @@ module BasicPagesHelper
 		else
 			return "#{title} | Taskr"
 		end
-		
 	end
+
 end
