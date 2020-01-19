@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 	root 'basic_pages#home' #root_path
   get '/about', to: 'basic_pages#about' #about_path
   get '/help', to: 'basic_pages#help' #help_path
+	post '/signup', to: 'users#create'
 	resources :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
