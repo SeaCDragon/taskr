@@ -8,9 +8,10 @@ Rails.application.routes.draw do
 	# Users
 	get  '/signup', to: 'users#new' #signup_path
 	post '/signup', to: 'users#create' #signup_path
-	resources :users #Controller Methods made available: show, edit, index, update, destroy
-									 #RESTful Equivalents respectively:  GET   GET   GET    PATCH   DELETE
-	
+	resources :users
+	#Controller Methods made available: show, edit, index, update, destroy
+	#RESTful Equivalents respectively:  GET   GET   GET    PATCH   DELETE
+
 	# Sessions (Login/Logout)
 	get    '/login',  to: 'sessions#new'
 	post   '/login',  to: 'sessions#create'
