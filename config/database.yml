@@ -22,4 +22,6 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  database: taskr_production
+  username: taskr
+  password: <%= ENV['TASKR_DATABASE_PASSWORD'] %>
