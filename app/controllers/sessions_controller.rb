@@ -8,13 +8,14 @@ class SessionsController < ApplicationController
 			log_in user
 			redirect_to user
 		else
-			#this flash persists for one page because of the ".now" 
+			#this flash persists for one page because of the ".now"
 			flash.now[:danger] = "Invalid username/password combination"
 			render 'new'
 		end
 	end
 
 	def destroy
-
+		log_out
+		redirect_to root_url
 	end
 end
