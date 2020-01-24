@@ -31,7 +31,12 @@ class User < ApplicationRecord
 		update_attribute(:remember_digest, User.digest(remember_token))
 	end
 
+	def forget
+		update_attribute(:remember_digest, nil)
+	end
+
 	def authenticated?(remember_token)
+		return false if remember_digest.nil?
 		#Password.new retrieves the digest from the database.
 		# .is_password method hashes the arguement passed to this function and compares it to the digest
 		# the remember_token arguement in this method is NOT the attribute in this user, they just have the
