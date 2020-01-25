@@ -20,7 +20,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 		#Phase 1: logging in
 		get login_path
 		post login_path, params:{session:{email: @user.email, password: 'password'}}
-		assert is_logged_in?
+		assert testv_logged_in?
 		assert_redirected_to @user
 		follow_redirect!
 		assert_select 'a[href=?]', login_path, count: 0
@@ -28,7 +28,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 		assert_select 'a[href=?]', user_path(@user)
 		#Phase 2: logging out
 		delete logout_path
-		assert_not is_logged_in?
+		assert_not testv_logged_in?
 		assert_redirected_to root_url
 		#line 34 simulates a logout in another window/tab of the same browser
 		delete logout_path
