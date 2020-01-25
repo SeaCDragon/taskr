@@ -6,8 +6,17 @@ class SessionsController < ApplicationController
 		user = User.find_by(email: params[:session][:email].downcase)
 		if user && user.authenticate(params[:session][:password])
 			log_in user
-			# this remember is from the session helper, not the user model
-			remember user
+=begin comment
+			if session[:params][:remember_me] == '1'
+				remember user
+			else
+				forget user
+			end
+
+			this ^ code is simplified and implemented below
+=end
+			params[:session][:remember_me] =='1' ? remember user : forget user
+			# this remember method is from the session helper ^, not the user model
 			redirect_to user
 		else
 			#this flash persists for one page because of the ".now"
