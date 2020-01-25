@@ -15,6 +15,7 @@ class SessionsController < ApplicationController
 
 			this ^ code is simplified and implemented below
 =end
+			# the 'remember' and 'forget' methods below need parentheses around their arguements
 			params[:session][:remember_me] =='1' ? remember(user) : forget(user)
 			# this remember method is from the session helper ^, not the user model
 			redirect_to user
