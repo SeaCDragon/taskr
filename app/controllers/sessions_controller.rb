@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 
 			this ^ code is simplified and implemented below
 =end
-			params[:session][:remember_me] =='1' ? remember user : forget user
+			params[:session][:remember_me] =='1' ? remember(user) : forget(user)
 			# this remember method is from the session helper ^, not the user model
 			redirect_to user
 		else
