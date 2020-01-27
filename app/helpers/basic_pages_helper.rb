@@ -7,5 +7,4 @@ module BasicPagesHelper
 			return "#{title} | Taskr"
 		end
 	end
-
 end
