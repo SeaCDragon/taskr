@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
 			# the 'remember' and 'forget' methods below need parentheses around their arguements
 			params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
 			# this remember method is from the session helper ^, not the user model
-			redirect_to @user
+			redirect_back_or @user
 		else
 			#this flash persists for one page because of the ".now"
 			flash.now[:danger] = "Invalid username/password combination"
