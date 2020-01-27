@@ -1,0 +1,15 @@
+<% provide(:title, "Settings") %>
+<% provide(:btn_txt, "Save changes") %>
+<% provide(:form_url, user_path(@user)) %>
+
+<h1>Edit user info</h1>
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<%= render 'users/form' %>
+		<div class="gravatar_edit">
+			<%= gravatar_for @user %>
+			<a href="http://gravatar.com/email" target="_blank" rel="noopen">change</a>
+			<small>This wensite uses Gravatar. Click here to learn more</small>
+		</div>
+	</div>
+</div>
