@@ -1,7 +1,8 @@
 class User < ApplicationRecord
-	attr_accessor :remember_token
+	attr_accessor :remember_token, :activation_token
 
 	before_save {email.downcase!}
+	before_create :create_activation_digest
 	validates :name, presence: true, length: {maximum: 60, minimum: 6}
 
 	EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
@@ -43,4 +44,10 @@ class User < ApplicationRecord
 		#same name.
 		BCrypt::Password.new(remember_digest).is_password?(remember_token)
 	end
+
+	private
+		def create_activation_digest
+			activation_token = User.new_token
+			activation_digest = User.digest(activation_token)
+		end
 end
