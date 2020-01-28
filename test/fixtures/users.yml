@@ -3,6 +3,7 @@ Charles:
   name: Developer
   email: fixture@user.com
   password_digest: <%= User.digest('password') %>
+  admin: true
 
 Ellis:
   name: Little Bro
