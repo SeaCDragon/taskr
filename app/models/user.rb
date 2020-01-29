@@ -1,7 +1,8 @@
 class User < ApplicationRecord
-	attr_accessor :remember_token
+	attr_accessor :remember_token, :activation_token
 
 	before_save {email.downcase!}
+	before_create :create_activation_digest
 	validates :name, presence: true, length: {maximum: 60, minimum: 6}
 
 	EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
@@ -35,12 +36,27 @@ class User < ApplicationRecord
 		update_attribute(:remember_digest, nil)
 	end
 
-	def authenticated?(remember_token)
-		return false if remember_digest.nil?
+	def authenticated?(attribute, token)
+		digest = send("#{attribute}_digest")
+		return false if digest.nil?
 		#Password.new retrieves the digest from the database.
 		# .is_password method hashes the arguement passed to this function and compares it to the digest
 		# the remember_token arguement in this method is NOT the attribute in this user, they just have the
 		#same name.
-		BCrypt::Password.new(remember_digest).is_password?(remember_token)
+		BCrypt::Password.new(digest).is_password?( token)
 	end
+
+	def activate
+		update_columns(activated: true, activated_at: Time.zone.now)
+	end
+
+	def send_activation_email
+		UserMailer.account_activation(self).deliver_now
+	end
+
+	private
+		def create_activation_digest
+			self.activation_token  = User.new_token
+			self.activation_digest = User.digest(activation_token)
+		end
 end
