@@ -16,7 +16,9 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		if @user.save
 			@user.send_activation_email
-			flash[:info] = "Last step: check your email to activate your account."
+			message = "Last step: check your email to activate your account. "
+			message += "If you don't see it in your inbox, check your spam folder."
+			flash[:info] = message
 			redirect_to root_url
 			#log_in @user
 			#flash[:success] = "Signup successful. Welcome to Taskr!"
