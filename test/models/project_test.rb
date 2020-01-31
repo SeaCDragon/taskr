@@ -25,4 +25,8 @@ class ProjectTest < ActiveSupport::TestCase
 		@project.title = "a"*101
 		assert_not @project.valid?
 	end
+
+	test "projects should appear most recent first" do
+		assert_equal projects(:most_recent), Project.first
+	end
 end

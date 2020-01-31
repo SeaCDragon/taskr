@@ -1,9 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  title: MyString
-  user: one
+oldest:
+  title: "I am ancient"
+  created_at: <%= 3.years.ago %>
 
-two:
-  title: MyString
-  user: two
+newer:
+  title: "getting there"
+  created_at: <%= 2.hours.ago %>
+
+newer_still:
+  title: "middle child"
+  created_at: <%= 10.minutes.ago %>
+
+most_recent:
+  title: "main character"
+  created_at: <%= Time.zone.now %>

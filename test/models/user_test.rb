@@ -59,4 +59,12 @@ class UserTest < ActiveSupport::TestCase
 	test "'Authenticated?' method should return false for a user with a nil digest" do
 		assert_not @user.authenticated?(:remember, 'remember_token')
 	end
+
+	test "created projects should die with user" do
+		@user.save
+		@user.projects.create!(title: "meme time")
+		assert_difference "Project.count", -1 do
+			@user.destroy
+		end
+	end
 end
