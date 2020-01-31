@@ -13,3 +13,10 @@ User.create!(name: 'taskrdev', email: 'seacdragon@gmail.com', password: 'foobar'
 	password = "password"
 	User.create!(name: name, email: email, password: password, password_confirmation: password, activated: true, activated_at: Time.zone.now)
 end
+
+users = User.order(:created_at).take(6)
+
+50.times do
+	title = Faker::Lorem.sentence(3)
+	users.each {|user| user.projects.create!(title: title)}
+end
