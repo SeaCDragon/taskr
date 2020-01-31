@@ -3,15 +3,26 @@
 oldest:
   title: "I am ancient"
   created_at: <%= 3.years.ago %>
+  user: Charles
 
 newer:
   title: "getting there"
   created_at: <%= 2.hours.ago %>
+  user: Charles
 
 newer_still:
   title: "middle child"
   created_at: <%= 10.minutes.ago %>
+  user: Charles
 
 most_recent:
   title: "main character"
   created_at: <%= Time.zone.now %>
+  user: Charles
+
+<% 30.times do |n| %>
+project_<%= n %>:
+  content: <%= Faker::Lorem.sentence(5) %>
+  created_at: <%= 42.days.ago %>
+  user: Charles
+<% end %>
