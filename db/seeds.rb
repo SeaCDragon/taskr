@@ -20,3 +20,11 @@ users = User.order(:created_at).take(6)
 	title = Faker::Lorem.sentence(word_count: 3)
 	users.each {|user| user.projects.create!(title: title)}
 end
+
+user = User.find(1)
+project = user.projects.first
+content = Faker::Lorem.sentence(word_count: 10)
+
+10.times do
+	project.tasks.create!(content: content)
+end
