@@ -18,6 +18,11 @@ class ProjectsController < ApplicationController
 		redirect_to request.referrer || root_url
 	end
 
+	def show
+		@project = Project.find(params[:id])
+		@tasks = @project.tasks.paginate(page: params[:page])
+	end
+
 	private
 		def project_params
 			params.require(:project).permit(:title)

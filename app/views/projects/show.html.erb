@@ -1,0 +1,11 @@
+<% provide(:title, @project.title) %>
+
+<div class="col-md-8">
+	<% if @project.tasks.any? %>
+		<h4>Tasks (<%= @project.tasks.count %>)</h4>
+		<ol class="tasks">
+			<%= render @tasks %>
+		</ol>
+		<%= will_paginate @tasks %>
+	<% end %>
+</div>
