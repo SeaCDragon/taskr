@@ -17,6 +17,6 @@ end
 users = User.order(:created_at).take(6)
 
 50.times do
-	title = Faker::Lorem.sentence(3)
+	title = Faker::Lorem.sentence(word_count: 3)
 	users.each {|user| user.projects.create!(title: title)}
 end
