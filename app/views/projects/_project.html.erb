@@ -1,6 +1,9 @@
 <li id="project-<%= project.id %>">
-	<h3><span class="title"><%= project.title %></span><br></h3>
+	<h3><span class="title"><%= project.title %></span></h3><br>
 	<span class="timestamp">
 		Posted <%= time_ago_in_words(project.created_at) %> ago
+		<% if current_user?(project.user) %>
+			<%= link_to "delete", project, method: :delete, data:{confirm: "are you sure?"} %>
+		<% end %>
 	</span>
 </li>
