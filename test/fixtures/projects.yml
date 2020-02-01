@@ -20,9 +20,31 @@ most_recent:
   created_at: <%= Time.zone.now %>
   user: Charles
 
+meme_time:
+  title: "Its meme time yo"
+  created_at: <%= 2.minutes.ago %>
+  user: Ellis
+
+haterz_txt:
+  title: "Charles is boof"
+  created_at: <%= 16.minutes.ago %>
+  user: Ellis
+
+posted_cringe:
+  title: "you have posted cringe"
+  created_at: <%= 4.hours.ago %>
+  user: Candace
+
+finish_him:
+  title: "Fatality"
+  created_at: <%= 11.years.ago %>
+  user: Candace
+
+
+
 <% 30.times do |n| %>
 project_<%= n %>:
-  content: <%= Faker::Lorem.sentence(5) %>
+  title: <%= Faker::Lorem.sentence(word_count: 5) %>
   created_at: <%= 42.days.ago %>
   user: Charles
 <% end %>
