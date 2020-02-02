@@ -21,6 +21,7 @@ class ProjectsController < ApplicationController
 	def show
 		@project = Project.find(params[:id])
 		@tasks = @project.tasks.paginate(page: params[:page])
+		@task = @project.tasks.build
 	end
 
 	private
