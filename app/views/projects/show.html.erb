@@ -9,3 +9,14 @@
 		<%= will_paginate @tasks %>
 	<% end %>
 </div>
+
+<%= @project.user_id %>
+
+<%= form_for(@task) do |f| %>
+	<%= hidden_field_tag :project_id, @task.project_id %>
+
+	<div class="field">
+		<%= f.text_area :content, placeholder: "describe the task" %>
+	</div>
+	<%= f.submit "Add task", class: "btn btn-primary" %>
+<% end %>

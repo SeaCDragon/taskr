@@ -1,0 +1,7 @@
+<li id="task-<%= task.id %>">
+	<span class="task-content"><%= task.content %></span><br>
+	<span class="timestamp">
+		Posted <%= time_ago_in_words(task.created_at) %> ago
+		<%= link_to "delete", task, method: :delete, data:{confirm: "are you sure?"} %>
+	</span>
+</li>
