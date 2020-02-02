@@ -10,6 +10,7 @@ class TasksController < ApplicationController
 	end
 
 	def destroy
+		@task = @project.tasks.find_by(id: params[:id])
 		@task.destroy
 		redirect_to request.referrer || root_url
 	end
